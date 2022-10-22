@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- bean을 활용한 객체 설정하기 -->
+	<!-- property는 setter를 호출해서 생성함 -->
+	<bean id="red1" class="useAop.Red">
+		<property name="value" value="1"></property>
+	</bean>
+	<!-- constructor-arg는 생성자를 사용해서 생성함 -->
+	<bean id="blue1" class="useAop.Blue">
+		<property name="value" value="2" />
+	</bean>
+
+	<!-- 
+	<bean id="mix1" class="useAop.Mix">
+		<property name="red" ref="red1" />
+		<property name="blue" ref="blue1"/>
+	</bean>
+	-->
+
+
+	<bean id="colorTracker" class="useAop.ColorTracker"></bean>
+	<aop:aspectj-autoproxy>
+		<aop:include name="colorTracker" />
+	</aop:aspectj-autoproxy>
+
+</beans>

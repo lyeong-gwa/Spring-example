@@ -6,7 +6,7 @@
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-context</artifactId>
-	<version>${spring-framework.version}</version>
+	<version>5.3.23</version>
 </dependency>
 
 bean설정할 때 id앞글자는 소문자여야 한다. 대문자는 인식하지 않는다.
