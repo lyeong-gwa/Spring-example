@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:component-scan base-package="useAnnotation"></context:component-scan>
+	
+	<!-- bean을 활용한 객체 설정하기 -->
+	<!-- property는 setter를 호출해서 생성함 -->
+	<bean id="red1" class="useAnnotation.Red">
+		<property name="value" value="1"></property>
+	</bean>
+	<!-- constructor-arg는 생성자를 사용해서 생성함 -->
+	<bean id="blue1" class="useAnnotation.Blue">
+		<constructor-arg name="value" value="2" />
+	</bean>
+
+	<!-- 어노테이션을 사용함으로서 대체가능
+	<bean id="mix1" class="useAnnotation.Mix" >
+		<constructor-arg name="red" ref="red1" />
+		<property name="blue">
+			<bean class="useXml.Blue">
+				<constructor-arg name="value" value="3" />
+			</bean>
+		</property>
+	</bean>
+	 -->
+	
+
+</beans>

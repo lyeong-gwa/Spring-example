@@ -7,7 +7,7 @@ public class ColorMain {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("useContext/Color.xml");
 		
-		Color red = (Color)context.getBean("red");
+		Color red = (Color)context.getBean("red"); //context.getBean("red",Color.class)
 		Color blue = (Color)context.getBean("blue");
 		
 		red.print();
