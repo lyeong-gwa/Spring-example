@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 자바 mapper와 연동 -->
+<mapper namespace="com.mvc.model.mapper.BoardMapper">
+
+	<select id="selectAll" resultType="Board">
+		select * from board order by
+		num desc
+	</select>
+
+	<insert id="insert">
+		insert into board(content,count) values(#{content}, #{count})
+	</insert>
+
+
+	<delete id="delete" parameterType="Board">
+		delete from board where num = #{num}
+	</delete>
+
+
+
+</mapper>
+
+
+<!-- <select id="selectAll"></select> <select id="selectOne"></select> <insert 
+	id="insert"></insert> <delete id="delete"></delete> //번호기준으로 제목과 내용수정 <update 
+	id="update"></update> //제목기준 검색: like검색 <select id ="searchByTitle"></select> 
+	//이름기준 검색 <select id="searchByName"></select> //로그인 체크 <select id="login"></select> -->
