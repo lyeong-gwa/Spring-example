@@ -23,6 +23,17 @@
 	
 	<context:component-scan base-package="com.mvc.controller" />
 	
-	
+	<!-- fileUpload -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="UTF-8"/>
+		<beans:property name="maxUploadSize" value="52428800"/> 
+		<beans:property name="maxInMemorySize" value="1048576"/> 
+	</beans:bean>
+
+	<!-- fileDownload -->
+	<beans:bean id="fileDownLoadView" class="com.file.view.FileDownLoadView"/>
+	<beans:bean id="fileViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />
+	</beans:bean> 
 	
 </beans:beans>

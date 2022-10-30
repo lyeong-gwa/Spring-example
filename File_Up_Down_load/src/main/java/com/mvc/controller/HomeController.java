@@ -1,6 +1,8 @@
 package com.mvc.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.file.model.FileInfoDto;
 import com.mvc.model.User;
 import com.mvc.service.UserService;
 
@@ -21,7 +24,13 @@ public class HomeController {
 	UserService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
+	public String home(HttpSession session) {
+		User user = (User) session.getAttribute("userinfo");
+		if(user!=null) {
+			List<FileInfoDto> userFile = service.userFile(user); 
+			user.setFileInfos(userFile);
+			session.setAttribute("userinfo", user);
+		}
 		return "home";
 	}
 	
@@ -34,16 +43,17 @@ public class HomeController {
 	public String login(User user,HttpSession session) {
 		User result = service.login(user);
 		if(result!=null) {
-			session.setAttribute("id", result.getId());
-			session.setAttribute("password", result.getPassword());
+			result.setFileInfos(service.userFile(result));
+			System.out.println(result.getFileInfos());
+			session.setAttribute("userinfo", result);
+			
 		}
 		return "home";
 	}
 	
 	@PostMapping(value = "/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("id");
-		session.removeAttribute("password");
+		session.removeAttribute("userinfo");
 		return "home";
 	}
 }
